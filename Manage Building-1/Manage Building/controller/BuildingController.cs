@@ -30,5 +30,27 @@ namespace Manage_Building.controller
            
 
         }
+
+        public List<Building> GetAllBuildings()
+        {
+            List<Building> buildingData = new List<Building>();
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"select [id] , [buildng_name],[roomsCount] from [dbo].[building]";            
+            SqlDataReader reader =  dbConnection.queryData(cmd);
+            while (reader.Read())
+            {
+                Building building = new Building()
+                {
+                    Id = reader.GetInt32(0),
+                    name = reader.GetString(1),
+                    RoomsCount = reader.GetInt32(2)
+                };
+
+                buildingData.Add(building);
+            }
+
+            return buildingData;
+        }
     }
 }
