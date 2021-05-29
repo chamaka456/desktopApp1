@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,8 @@ namespace Manage_Building
     public partial class FormAddBuildings : Form
     {
 
-        private ConnectorClass con = new ConnectorClass();
+        //private ConnectorClass con = new ConnectorClass();
+        private readonly BuildingController buildingController;
 
         public FormAddBuildings()
         {
@@ -43,7 +45,8 @@ namespace Manage_Building
 
         private void button2_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
+            buildingController.AddNewBuilding();
+            //con.OpenConection();
             bool result = con.executequery("insert into building(building_id, buildng_name, number_room)values('" + textBox2.Text + "', '" + textBox1.Text + "', '" + cmbNumberofRooms.Text + "')");
             if (result)
             {
@@ -58,7 +61,7 @@ namespace Manage_Building
 
         private void button1_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
+            //con.OpenConection();
             bool result = con.executequery("delete from building where building_id = " + textBox2.Text);
             if (result)
             {
