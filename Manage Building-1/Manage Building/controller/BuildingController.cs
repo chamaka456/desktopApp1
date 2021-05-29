@@ -31,6 +31,29 @@ namespace Manage_Building.controller
 
         }
 
+        public int UpdateBuilding(Building building)
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"UPDATE [dbo].[building]
+                                set [buildng_name]= @name , [roomsCount] = @count
+                                WHERE [id] = 4";
+
+            cmd.Parameters.Add(new SqlParameter("@name", building.name));
+            cmd.Parameters.Add(new SqlParameter("@count", building.RoomsCount));
+            return dbConnection.excuteQueryRowcount(cmd);
+        } 
+        
+        public int DeleteBuilding(int id)
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"DELETE FROM [dbo].[building]
+                                WHERE [id] = @id";
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            return dbConnection.excuteQueryRowcount(cmd);
+        }
+
         public List<Building> GetAllBuildings()
         {
             List<Building> buildingData = new List<Building>();
@@ -49,6 +72,7 @@ namespace Manage_Building.controller
 
                 buildingData.Add(building);
             }
+            dbConnection.CloseConnection();
 
             return buildingData;
         }

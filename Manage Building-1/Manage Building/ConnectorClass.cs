@@ -38,7 +38,7 @@ namespace Manage_Building
         }
 
 
-        private void CloseConnection()
+        public void CloseConnection()
         {
             if (con != null && con.State == ConnectionState.Open)
             {
@@ -46,6 +46,7 @@ namespace Manage_Building
             }
         }
 
+       
         public bool executequery(String Query)
         {
             try
@@ -73,12 +74,40 @@ namespace Manage_Building
 
         }
 
+        /// <summary>
+        /// excute the query and return the row count updated
+        /// </summary>
+        /// <param name="sqlCommand"></param>
+        /// <returns></returns>
+        public int excuteQueryRowcount(SqlCommand sqlCommand)
+        {
+            try
+            {
+                OpenConection();
+                int updatedCount = sqlCommand.ExecuteNonQuery();
+                CloseConnection();
+                return updatedCount;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
+            /// <summary>
+            /// excute the query and return updated id
+            /// </summary>
+            /// <param name="sqlCommand"></param>
+            /// <returns></returns>
         public int executequery(SqlCommand sqlCommand)
         {
             try
             {
                 OpenConection();
                int id = (int) sqlCommand.ExecuteScalar();
+                CloseConnection();
                 return id;
             }
             catch (Exception ex)
@@ -94,7 +123,9 @@ namespace Manage_Building
             try
             {
                 OpenConection();
-                return sqlCommand.ExecuteReader();
+                SqlDataReader reader =  sqlCommand.ExecuteReader();
+              //  CloseConnection();
+                return reader;
             }
             catch (Exception ex)
             {

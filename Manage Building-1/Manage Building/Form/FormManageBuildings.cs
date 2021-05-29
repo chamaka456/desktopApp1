@@ -55,6 +55,11 @@ namespace Manage_Building
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("cell is clicked");
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            txtId.Text = row.Cells[0].Value.ToString();
+            txtName.Text = row.Cells[1].Value.ToString();
+            cmbNumberofRooms.SelectedItem = row.Cells[2].Value.ToString();
 
         }
 
@@ -70,8 +75,8 @@ namespace Manage_Building
 
         private void clearFields()
         {
-            textBox1.Clear();
-            textBox2.Clear();
+            txtId.Clear();
+            txtName.Clear();
             cmbNumberofRooms.SelectedIndex = 0;
         }
 
@@ -85,19 +90,37 @@ namespace Manage_Building
 
         }
 
-        private void ClearSelection(object sender, EventArgs e)
-        {
-
-        }
 
         private void UpdateSelection(object sender, EventArgs e)
         {
+            Building building = new Building()
+            {
+                Id = int.Parse(txtId.Text),
+                name = txtName.Text,
+                RoomsCount = int.Parse(cmbNumberofRooms.SelectedItem.ToString())
+            };
+            int updateCount = buildingController.UpdateBuilding(building);
 
+            if (updateCount > 0)
+                MessageBox.Show("Building succesfully updated");
+            else
+                MessageBox.Show("Building update failed");
         }
 
         private void DeleteSelection(object sender, EventArgs e)
         {
 
+            int updateCount = buildingController.DeleteBuilding(int.Parse(txtId.Text));
+
+            if (updateCount > 0)
+            {
+                MessageBox.Show("Building succesfully deleted");
+                loadToList();
+                clearFields();
+            }
+                
+            else
+                MessageBox.Show("Building delete failed");
         }
     }
 }
