@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\BuildingController.cs" />
+    <Compile Include="controller\RoomController.cs" />
     <Compile Include="Form\FormGenerateTimeTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +118,7 @@
       <DependentUpon>FormManageSession.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Building.cs" />
+    <Compile Include="model\Room.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleDBDataSet.Designer.cs">

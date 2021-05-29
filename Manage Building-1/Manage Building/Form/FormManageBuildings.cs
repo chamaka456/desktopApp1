@@ -59,19 +59,7 @@ namespace Manage_Building
 
         private void button2_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("update building set buildng_name = '" + textBox2.Text + "', number_room = '" + cmbNumberofRooms.Text + "' where building_id = '" + textBox1.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Updated successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
 
-            loadToList();
         }
 
         private void clearFields()
@@ -88,18 +76,21 @@ namespace Manage_Building
 
         private void button4_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("DELETE FROM building where building_id = '" + textBox1.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Deleted successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
-            loadToList();
+
+        }
+
+        private void ClearSelection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateSelection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteSelection(object sender, EventArgs e)
+        {
 
         }
     }
