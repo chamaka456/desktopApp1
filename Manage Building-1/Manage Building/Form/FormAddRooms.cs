@@ -36,6 +36,7 @@ namespace Manage_Building
         private void FormAddRooms_Load(object sender, EventArgs e)
         {
             cmbCapacity.SelectedIndex = 0;
+            List<Building> = 
         }
 
 
