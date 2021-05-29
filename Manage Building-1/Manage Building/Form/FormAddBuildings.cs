@@ -53,7 +53,16 @@ namespace Manage_Building
                 name = d.Text,
                 RoomsCount = int.Parse(cmbNumberofRooms.Text)
             };
-            labelId.Text = buildingController.AddNewBuilding(building).ToString();
+            int buldingId = buildingController.AddNewBuilding(building);
+            if(buldingId > 0)
+            {
+                labelId.Text = buldingId.ToString();
+                MessageBox.Show("Building added succesfully");
+            }
+            else
+            {
+                MessageBox.Show("Error occured in adding the building");
+            }
             
         }
 
