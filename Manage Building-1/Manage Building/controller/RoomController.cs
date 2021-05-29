@@ -25,7 +25,7 @@ namespace Manage_Building.controller
                                     VALUES(@name , @building , @capcity, @type)";
 
             cmd.Parameters.Add(new SqlParameter("@name", room.name));
-            cmd.Parameters.Add(new SqlParameter("@building", room.Building.Id));
+            cmd.Parameters.Add(new SqlParameter("@building", room.BuildingId));
             cmd.Parameters.Add(new SqlParameter("@capcity", room.Capacity));
             cmd.Parameters.Add(new SqlParameter("@type", room.type));
             return dbConnection.executequery(cmd);

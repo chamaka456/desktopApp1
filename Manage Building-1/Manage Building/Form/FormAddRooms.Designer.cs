@@ -35,7 +35,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.roomname = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@
             this.cmbCapacity = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.labelroomid = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -136,15 +136,6 @@
             this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Room_Name:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(249, 256);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(307, 27);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // roomname
             // 
@@ -254,12 +245,34 @@
             this.labelroomid.Size = new System.Drawing.Size(0, 20);
             this.labelroomid.TabIndex = 13;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.comboBox1.Location = new System.Drawing.Point(249, 261);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(307, 28);
+            this.comboBox1.TabIndex = 14;
+            // 
             // FormAddRooms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 554);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.labelroomid);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmbCapacity);
@@ -272,7 +285,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.roomname);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -299,7 +311,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox roomname;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
@@ -309,5 +320,6 @@
         private System.Windows.Forms.ComboBox cmbCapacity;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelroomid;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
