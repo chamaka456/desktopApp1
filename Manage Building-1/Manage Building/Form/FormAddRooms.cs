@@ -20,10 +20,15 @@ namespace Manage_Building
         private ConnectorClass con = new ConnectorClass();
 
         private readonly RoomController roomController;
+        private readonly BuildingController buildingController;
+
+        private List<Building> buildings;
 
         public FormAddRooms()
         {
             InitializeComponent();
+            roomController = new RoomController();
+            buildingController = new BuildingController();
         }
 
         private void btnViewAllRooms_Click(object sender, EventArgs e)
@@ -36,7 +41,9 @@ namespace Manage_Building
         private void FormAddRooms_Load(object sender, EventArgs e)
         {
             cmbCapacity.SelectedIndex = 0;
-            List<Building> = 
+            buildings = buildingController.GetAllBuildings();
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(buildings.Select(b => b.name).ToArray());
         }
 
 
@@ -68,7 +75,6 @@ namespace Manage_Building
             Room room = new Room()
             {
                 name = roomname.Text,
-                BuildingId = int.Parse(comboBox1.Text),
                 Capacity = int.Parse(cmbCapacity.Text)
 
             };       
@@ -81,6 +87,12 @@ namespace Manage_Building
             if (radioButton2.Checked)
             {
                 room.type = 2;
+            }
+
+            Building selectedBuilding = buildings.First(b => b.name == comboBox1.SelectedItem.ToString());
+            if(selectedBuilding != null)
+            {
+                room.BuildingId = selectedBuilding.Id;
             }
 
             int roomId = roomController.AddNewRoom(room);

@@ -21,7 +21,7 @@ namespace Manage_Building.controller
         {
             SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
 
-            cmd.CommandText = @"INSERT INTO  [dbo].[room]([room_name] , [building_id] , [capcity] , [room_type]) output INSERTED.ID
+            cmd.CommandText = @"INSERT INTO  [dbo].[room]([room_name] , [building_id] , [capcity] , [room_type]) output INSERTED.room_id
                                     VALUES(@name , @building , @capcity, @type)";
 
             cmd.Parameters.Add(new SqlParameter("@name", room.name));
