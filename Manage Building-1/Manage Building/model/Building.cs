@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Manage_Building.model
 {
-    class Building
+    public class Building
     {
         public int Id { get; set; }
 

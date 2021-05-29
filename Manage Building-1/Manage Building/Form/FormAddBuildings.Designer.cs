@@ -32,7 +32,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.d = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,7 +41,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.picBack = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.cmbNumberofRooms = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBack)).BeginInit();
@@ -69,13 +68,13 @@
             this.panel1.Size = new System.Drawing.Size(800, 146);
             this.panel1.TabIndex = 0;
             // 
-            // textBox1
+            // d
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(254, 290);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(307, 23);
-            this.textBox1.TabIndex = 2;
+            this.d.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.d.Location = new System.Drawing.Point(254, 290);
+            this.d.Name = "d";
+            this.d.Size = new System.Drawing.Size(307, 23);
+            this.d.TabIndex = 2;
             // 
             // label2
             // 
@@ -144,7 +143,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.addNewBuilding);
             // 
             // button3
             // 
@@ -171,20 +170,6 @@
             this.picBack.TabIndex = 0;
             this.picBack.TabStop = false;
             this.picBack.Click += new System.EventHandler(this.picBack_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(576, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 37);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmbNumberofRooms
             // 
@@ -214,7 +199,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 521);
             this.Controls.Add(this.cmbNumberofRooms);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnManageBuildings);
@@ -222,7 +206,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.d);
             this.Controls.Add(this.picBack);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -244,7 +228,7 @@
         private System.Windows.Forms.PictureBox picBack;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox d;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
@@ -252,7 +236,6 @@
         private System.Windows.Forms.Button btnManageBuildings;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cmbNumberofRooms;
     }
 }

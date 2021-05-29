@@ -19,6 +19,11 @@ namespace Manage_Building
             this.con = new SqlConnection(connString);
         }
 
+        public SqlConnection GetConnection()
+        {
+            return con;
+        }
+
         public void OpenConection()
         {
             
@@ -66,6 +71,22 @@ namespace Manage_Building
                 CloseConnection();
             }
 
+        }
+
+        public int executequery(SqlCommand sqlCommand)
+        {
+            try
+            {
+                OpenConection();
+               int rows =  sqlCommand.ExecuteNonQuery();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
         }
 
         public object ShowDataInGridView(string Query_)

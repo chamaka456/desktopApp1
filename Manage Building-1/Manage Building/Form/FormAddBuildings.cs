@@ -1,4 +1,5 @@
 ﻿using Manage_Building.controller;
+using Manage_Building.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace Manage_Building
         public FormAddBuildings()
         {
             InitializeComponent();
+            buildingController = new BuildingController();
         }
 
         private void btnManageBuildings_Click(object sender, EventArgs e)
@@ -43,27 +45,26 @@ namespace Manage_Building
             cmbNumberofRooms.SelectedIndex = 0;
         }
 
+        private void addNewBuilding(object sender , EventArgs e)
+        {
+            Building building = new Building()
+            {
+                name = d.Text,
+                RoomsCount = int.Parse(cmbNumberofRooms.Text)
+            };
+            buildingController.AddNewBuilding(building);
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            buildingController.AddNewBuilding();
-            //con.OpenConection();
-            bool result = con.executequery("insert into building(building_id, buildng_name, number_room)values('" + textBox2.Text + "', '" + textBox1.Text + "', '" + cmbNumberofRooms.Text + "')");
-            if (result)
-            {
-                MessageBox.Show("Record Inserted successfilly");
-            }
-            else
-            {
-                MessageBox.Show("Record Insert Error");
-            }
-            clearFields();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //con.OpenConection();
-            bool result = con.executequery("delete from building where building_id = " + textBox2.Text);
-            if (result)
+            //bool result = con.executequery("delete from building where building_id = " + textBox2.Text);
+            if (true)
             {
                 MessageBox.Show("Record Delete successfilly");
             }
@@ -81,7 +82,7 @@ namespace Manage_Building
 
         private void clearFields()
         {
-            textBox1.Clear();
+            d.Clear();
             textBox2.Clear();
             cmbNumberofRooms.SelectedIndex = 0;
         }
