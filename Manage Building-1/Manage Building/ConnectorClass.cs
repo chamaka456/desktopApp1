@@ -89,6 +89,21 @@ namespace Manage_Building
             }
         }
 
+        public SqlDataReader queryData(SqlCommand sqlCommand)
+        {
+            try
+            {
+                OpenConection();
+                return sqlCommand.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
         public object ShowDataInGridView(string Query_)
         {
             SqlDataAdapter dr = new SqlDataAdapter(Query_, con);
