@@ -16,7 +16,7 @@ namespace Manage_Building.model
 
         public int type { get; set; }
 
-        public Building Building { get; set; }
+        public int BuildingId { get; set; }
 
     }
 }

@@ -38,40 +38,9 @@ namespace Manage_Building
             cmbCapacity.SelectedIndex = 0;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked)
-            {
-                roomtypech = "Labortary";
-        
-            }
-            else
-            {
-                roomtypech = "Lecture Hall";
-            }
-           
-            con.OpenConection();
-     
-            bool result = con.executequery("insert into room(room_name,building_id,capcity,room_type)values('" + roomname.Text + "','" + roomId + "','" + cmbCapacity.Text + "','" + roomtypech + "')");
-            if (result)
-            {
-                MessageBox.Show("Record Inserted successfilly");
-            }
-            else
-            {
-                MessageBox.Show("Record Insert Error");
-            }
-            clearFields();
-        }
 
-        private void clearFields()
-        {
-            roomname.Clear();
-            textBox2.Clear();
-            cmbCapacity.SelectedIndex = 0;
-        }
 
-       private void textBox2_TextChanged(object sender, EventArgs e)
+   /*    private void textBox2_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -92,17 +61,26 @@ namespace Manage_Building
                 MessageBox.Show("Error");
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        */
+        private void button2_Click(object sender, EventArgs e)
         {
             Room room = new Room()
             {
                 name = roomname.Text,
-                Building = int.Parse(textBox2.Text),
-                Capacity = int.Parse(cmbCapacity.Text),
-                type = 
+                BuildingId = int.Parse(comboBox1.Text),
+                Capacity = int.Parse(cmbCapacity.Text)
 
             };       
+
+            if (radioButton1.Checked)
+            {
+                room.type = 1;
+            }
+
+            if (radioButton2.Checked)
+            {
+                room.type = 2;
+            }
 
             int roomId = roomController.AddNewRoom(room);
             if (roomId > 0)
@@ -116,7 +94,7 @@ namespace Manage_Building
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             con.OpenConection();
             bool result = con.executequery("delete from room where room_name =" + roomname.Text);
@@ -129,7 +107,6 @@ namespace Manage_Building
             {
                 MessageBox.Show(" Error");
             }
-            clearFields();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
