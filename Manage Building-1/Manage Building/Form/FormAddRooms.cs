@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,8 +19,8 @@ namespace Manage_Building
         private String roomId;
         private ConnectorClass con = new ConnectorClass();
 
+        private readonly RoomController roomController;
 
-        
         public FormAddRooms()
         {
             InitializeComponent();
@@ -50,7 +52,7 @@ namespace Manage_Building
            
             con.OpenConection();
      
-            bool result = con.executequery("insert into room(room_name,building_id,capcity,room_type)values('" + textBox1.Text + "','" + roomId + "','" + cmbCapacity.Text + "','" + roomtypech + "')");
+            bool result = con.executequery("insert into room(room_name,building_id,capcity,room_type)values('" + roomname.Text + "','" + roomId + "','" + cmbCapacity.Text + "','" + roomtypech + "')");
             if (result)
             {
                 MessageBox.Show("Record Inserted successfilly");
@@ -64,12 +66,12 @@ namespace Manage_Building
 
         private void clearFields()
         {
-            textBox1.Clear();
+            roomname.Clear();
             textBox2.Clear();
             cmbCapacity.SelectedIndex = 0;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+       private void textBox2_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -93,18 +95,35 @@ namespace Manage_Building
 
         private void button3_Click(object sender, EventArgs e)
         {
-            clearFields();
+            Room room = new Room()
+            {
+                name = roomname.Text,
+                Building = int.Parse(textBox2.Text),
+                Capacity = int.Parse(cmbCapacity.Text),
+                type = 
 
+            };       
+
+            int roomId = roomController.AddNewRoom(room);
+            if (roomId > 0)
+            {
+                labelroomid.Text = roomId.ToString();
+                MessageBox.Show("Building added succesfully");
+            }
+            else
+            {
+                MessageBox.Show("Error occured in adding the building");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             con.OpenConection();
-            bool result = con.executequery("delete from room where room_name =" + textBox1.Text);
+            bool result = con.executequery("delete from room where room_name =" + roomname.Text);
 
             if (result)
             {
-                MessageBox.Show("Record delete successfilly");
+                MessageBox.Show("Room deleted successfilly");
             }
             else
             {
@@ -123,6 +142,16 @@ namespace Manage_Building
             FormMain formMain = new FormMain();
             this.Hide();
             formMain.Show();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
