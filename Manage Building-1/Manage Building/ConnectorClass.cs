@@ -78,8 +78,8 @@ namespace Manage_Building
             try
             {
                 OpenConection();
-               int rows =  sqlCommand.ExecuteNonQuery();
-                return 1;
+               int id = (int) sqlCommand.ExecuteScalar();
+                return id;
             }
             catch (Exception ex)
             {

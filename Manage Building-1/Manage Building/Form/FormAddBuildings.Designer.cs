@@ -34,7 +34,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.d = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnManageBuildings = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.picBack = new System.Windows.Forms.PictureBox();
             this.cmbNumberofRooms = new System.Windows.Forms.ComboBox();
+            this.labelId = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBack)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             // d
             // 
             this.d.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.d.Location = new System.Drawing.Point(254, 290);
+            this.d.Location = new System.Drawing.Point(254, 232);
             this.d.Name = "d";
             this.d.Size = new System.Drawing.Size(307, 23);
             this.d.TabIndex = 2;
@@ -81,26 +81,18 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(251, 211);
+            this.label2.Location = new System.Drawing.Point(251, 428);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Building ID:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(254, 235);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(307, 23);
-            this.textBox2.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(251, 265);
+            this.label3.Location = new System.Drawing.Point(251, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 15);
             this.label3.TabIndex = 0;
@@ -111,7 +103,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(251, 319);
+            this.label4.Location = new System.Drawing.Point(251, 275);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(105, 15);
             this.label4.TabIndex = 0;
@@ -123,7 +115,7 @@
             this.btnManageBuildings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
             this.btnManageBuildings.FlatAppearance.BorderSize = 0;
             this.btnManageBuildings.ForeColor = System.Drawing.Color.White;
-            this.btnManageBuildings.Location = new System.Drawing.Point(254, 420);
+            this.btnManageBuildings.Location = new System.Drawing.Point(254, 362);
             this.btnManageBuildings.Name = "btnManageBuildings";
             this.btnManageBuildings.Size = new System.Drawing.Size(115, 37);
             this.btnManageBuildings.TabIndex = 4;
@@ -137,7 +129,7 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(384, 420);
+            this.button2.Location = new System.Drawing.Point(391, 362);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 37);
             this.button2.TabIndex = 5;
@@ -151,7 +143,7 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(480, 420);
+            this.button3.Location = new System.Drawing.Point(494, 362);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(81, 37);
             this.button3.TabIndex = 6;
@@ -187,10 +179,22 @@
             "8",
             "9",
             "10"});
-            this.cmbNumberofRooms.Location = new System.Drawing.Point(254, 337);
+            this.cmbNumberofRooms.Location = new System.Drawing.Point(254, 306);
             this.cmbNumberofRooms.Name = "cmbNumberofRooms";
             this.cmbNumberofRooms.Size = new System.Drawing.Size(307, 23);
             this.cmbNumberofRooms.TabIndex = 3;
+            this.cmbNumberofRooms.SelectedIndexChanged += new System.EventHandler(this.cmbNumberofRooms_SelectedIndexChanged);
+            // 
+            // labelId
+            // 
+            this.labelId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelId.AutoSize = true;
+            this.labelId.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelId.Location = new System.Drawing.Point(353, 428);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(0, 15);
+            this.labelId.TabIndex = 7;
+            this.labelId.Click += new System.EventHandler(this.label5_Click);
             // 
             // FormAddBuildings
             // 
@@ -198,6 +202,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 521);
+            this.Controls.Add(this.labelId);
             this.Controls.Add(this.cmbNumberofRooms);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -205,7 +210,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.d);
             this.Controls.Add(this.picBack);
             this.Controls.Add(this.panel1);
@@ -230,13 +234,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox d;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnManageBuildings;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox cmbNumberofRooms;
+        private System.Windows.Forms.Label labelId;
     }
 }
 

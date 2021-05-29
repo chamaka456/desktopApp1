@@ -30,6 +30,7 @@ namespace Manage_Building
             FormManageBuildings formManageBuildings = new FormManageBuildings();
             this.Hide();
             formManageBuildings.Show();
+
           
         }
 
@@ -52,7 +53,8 @@ namespace Manage_Building
                 name = d.Text,
                 RoomsCount = int.Parse(cmbNumberofRooms.Text)
             };
-            buildingController.AddNewBuilding(building);
+            labelId.Text = buildingController.AddNewBuilding(building).ToString();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -83,8 +85,18 @@ namespace Manage_Building
         private void clearFields()
         {
             d.Clear();
-            textBox2.Clear();
+            //textBox2.Clear();
             cmbNumberofRooms.SelectedIndex = 0;
+        }
+
+        private void cmbNumberofRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

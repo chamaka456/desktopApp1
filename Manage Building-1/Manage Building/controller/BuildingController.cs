@@ -17,17 +17,17 @@ namespace Manage_Building.controller
             dbConnection = new ConnectorClass();
         }
 
-        public bool AddNewBuilding(Building building)
+        public int AddNewBuilding(Building building)
         {
             SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
 
-            cmd.CommandText = @"INSERT INTO  [dbo].[building]([buildng_name] , [roomsCount])
+            cmd.CommandText = @"INSERT INTO  [dbo].[building]([buildng_name] , [roomsCount]) output INSERTED.ID
                                     VALUES(@name , @count)";
 
             cmd.Parameters.Add(new SqlParameter("@name", building.name));
             cmd.Parameters.Add(new SqlParameter("@count", building.RoomsCount));
-             dbConnection.executequery(cmd);
-            return true;
+            return dbConnection.executequery(cmd);
+           
 
         }
     }
