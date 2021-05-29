@@ -59,46 +59,26 @@ namespace Manage_Building
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
-                roomtypech = "Labortary";
 
-            }
-            else
-            {
-                roomtypech = "Lecture Hall";
-            }
-
-            con.OpenConection();
-            bool result = con.executequery("update room set room_name='" + textBox1.Text + "',capcity='" + cmbCapacity.Text + "',room_type='" + roomtypech + "' where room_id='" + textBox2.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Delete successfilly");
-            }
-            else
-            {
-                MessageBox.Show("Record Insert Error");
-            }
-            clearFields();
-
-
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("DELETE FROM room where room_id = '" + textBox2.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Deleted successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
+
+        }
+
+        private void ClearSelection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateSelection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteSelection(object sender, EventArgs e)
+        {
 
         }
     }
