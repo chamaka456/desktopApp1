@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +19,13 @@ namespace Manage_Building
         private ConnectorClass con = new ConnectorClass();
 
 
+        private readonly RoomController roomController;
+
+
         public FormManageRooms()
         {
             InitializeComponent();
+            roomController = new RoomController();
         }
 
         private void picHome_Click(object sender, EventArgs e)
@@ -39,9 +45,8 @@ namespace Manage_Building
 
         private void FormManageRooms_Load(object sender, EventArgs e)
         {
-            con.OpenConection();
-           
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
+            List<Room> rooms = roomController.GetAllRooms();
+            dataGridView1.DataSource = rooms;
         }
 
         private void button3_Click(object sender, EventArgs e)
