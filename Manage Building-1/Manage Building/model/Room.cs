@@ -15,5 +15,8 @@ namespace Manage_Building.model
         public int Capacity { get; set; }
 
         public int type { get; set; }
+
+        public Building Building { get; set; }
+
     }
 }
