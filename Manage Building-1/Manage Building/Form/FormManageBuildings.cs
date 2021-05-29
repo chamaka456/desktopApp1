@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +15,14 @@ namespace Manage_Building
 {
     public partial class FormManageBuildings : Form
     {
-        private ConnectorClass con = new ConnectorClass();
+        //private ConnectorClass con = new ConnectorClass();
+        private readonly BuildingController buildingController;
 
         
         public FormManageBuildings()
         {
             InitializeComponent();
+            buildingController = new BuildingController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -43,8 +47,10 @@ namespace Manage_Building
 
         private void loadToList()
         {
-            con.OpenConection();
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from building"); 
+            //con.OpenConection();
+            //this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from building"); 
+            List<Building> buildings =  buildingController.GetAllBuildings();
+            dataGridView1.DataSource = buildings;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
