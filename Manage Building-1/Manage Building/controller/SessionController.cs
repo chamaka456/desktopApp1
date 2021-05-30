@@ -25,23 +25,23 @@ namespace Manage_Building.controller
                                 set [Lecture_no]= @lec , [Subject_no] = @sub, [Tag] = @tag, [Group_no] = @gp, [Room_id] = @room, [count] = @count,  [duration] = @dur
                                 WHERE [id] = @id";
 
-            cmd.Parameters.Add(new SqlParameter("@lec", session.name));
-            cmd.Parameters.Add(new SqlParameter("@sub", session.name));
-            cmd.Parameters.Add(new SqlParameter("@tag", session.name));
-            cmd.Parameters.Add(new SqlParameter("@gp", session.name));
-            cmd.Parameters.Add(new SqlParameter("@room", session.name));
-            cmd.Parameters.Add(new SqlParameter("@count", session.RoomsCount));
-            cmd.Parameters.Add(new SqlParameter("@dur", session.name));
+            cmd.Parameters.Add(new SqlParameter("@lec", session.lectureId));
+            cmd.Parameters.Add(new SqlParameter("@sub", session.subjectId));
+            cmd.Parameters.Add(new SqlParameter("@tag", session.tag));
+            cmd.Parameters.Add(new SqlParameter("@gp", session.groupId));
+            cmd.Parameters.Add(new SqlParameter("@room", session.roomId));
+            cmd.Parameters.Add(new SqlParameter("@count", session.count));
+            cmd.Parameters.Add(new SqlParameter("@dur", session.duaration));
             cmd.Parameters.Add(new SqlParameter("@id", session.Id));
 
             return dbConnection.excuteQueryRowcount(cmd);
         }
 
-        public int DeleteBuilding(int id)
+        public int DeleteSession(int id)
         {
             SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
 
-            cmd.CommandText = @"DELETE FROM [dbo].[building]
+            cmd.CommandText = @"DELETE FROM [dbo].[sesion]
                                 WHERE [id] = @id";
             cmd.Parameters.Add(new SqlParameter("@id", id));
             return dbConnection.excuteQueryRowcount(cmd);
@@ -94,9 +94,38 @@ namespace Manage_Building.controller
             dbConnection.CloseConnection();
 
             return groups;
-        } 
-        
-        
+        }
+        public List<Session> getAllSessions()
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+            List<Session> sessions = new List<Session>();
+
+            cmd.CommandText = @"SELECT id, Lecture_no, Subject_no, Tag ,Group_no, Room_id,count , duration 
+                              FROM [dbo].[groups]";
+
+            SqlDataReader reader = dbConnection.queryData(cmd);
+
+            while (reader.Read())
+            {
+                Session ss = new Session()
+                {
+                    Id = reader.GetInt32(0),
+                    lectureId = reader.GetInt32(1),
+                    subjectId = reader.GetString(2),
+                    tag = reader.GetString(3),
+                    groupId = reader.GetInt32(4),
+                    roomId = reader.GetInt32(5),
+                    count = reader.GetInt32(6),
+                    duaration = reader.GetInt32(7)
+                };
+
+                sessions.Add(ss);
+            }
+            dbConnection.CloseConnection();
+
+            return sessions;
+        }
+
         public List<Subject> getAllSubjects()
         {
             SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());

@@ -8,45 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using Manage_Building.controller;
+using Manage_Building.model;
 
 namespace Manage_Building
 {
     public partial class FormManageSession : Form
     {
-        private ConnectorClass con = new ConnectorClass();
+       // private ConnectorClass con = new ConnectorClass();
+
+        private readonly SessionController sessionController;
+
 
         public FormManageSession()
         {
             InitializeComponent();
-            con.OpenConection();
-            try
-            {
-               
-                    SqlDataReader reader = con.DataReader("select room_id from room");
-                    while (reader.Read())
-                    {
-                        //cmbRooms.Items.Add(reader.GetValue(0).ToString());
-
-                    }
-                    reader.Close();
-
-                    SqlDataReader reader2 = con.DataReader("select Session_no from sesion");
-                    while (reader2.Read())
-                    {
-                       //cmbSession.Items.Add(reader2.GetValue(0).ToString());
-
-                    }
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error"+e.Message);
-            }
-
-
-
+            sessionController = new SessionController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -70,7 +47,8 @@ namespace Manage_Building
 
         private void LoadInitialData()
         {
-
+            List<Session> session = sessionController.getAllSessions();
+            dataGridView1.DataSource = session;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -129,9 +107,46 @@ namespace Manage_Building
 
         }
 
+
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            Session session = new Session()
+            {
+                Id = int.Parse(sestext.Text),
+                roomId = int.Parse(romtxt.Text),
+                lectureId = int.Parse(lectxt.SelectedItem.ToString()),
+                tag = tagtxt.SelectedItem.ToString(),
+                groupId = int.Parse(gptxt.SelectedItem.ToString()),
+                count = int.Parse(counttxt.Text),
+                duaration = int.Parse(durtxt.Text)
+            };
+            int updateCount = sessionController.UpdateSession(session);
+
+            if (updateCount > 0)
+                MessageBox.Show("Session succesfully updated");
+            else
+                MessageBox.Show("Session update failed");
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+
+            int updateCount = sessionController.DeleteSession(int.Parse(sestext.Text));
+
+            if (updateCount > 0)
+            {
+                MessageBox.Show("Session succesfully deleted");
+                LoadInitialData();
+                clearFields();
+            }
+
+            else
+                MessageBox.Show("Session delete failed");
         }
     }
 }
