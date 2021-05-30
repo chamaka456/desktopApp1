@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.btnManageBuildings = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,11 +45,11 @@
             this.picHome = new System.Windows.Forms.PictureBox();
             this.picBack = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCount = new System.Windows.Forms.TextBox();
             this.cmbRooms = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtduration = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHome)).BeginInit();
@@ -82,19 +82,19 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // btnSubmit
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(431, 450);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 37);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Submit";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSubmit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(204)))));
+            this.btnSubmit.FlatAppearance.BorderSize = 0;
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Location = new System.Drawing.Point(431, 450);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(81, 37);
+            this.btnSubmit.TabIndex = 7;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.submit_click);
             // 
             // btnManageBuildings
             // 
@@ -199,17 +199,9 @@
             this.cmbTag.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbTag.FormattingEnabled = true;
             this.cmbTag.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
+            "Tutorial",
+            "Lab",
+            "Lecture"});
             this.cmbTag.Location = new System.Drawing.Point(258, 254);
             this.cmbTag.Name = "cmbTag";
             this.cmbTag.Size = new System.Drawing.Size(307, 23);
@@ -294,12 +286,12 @@
             this.label7.TabIndex = 31;
             this.label7.Text = "Room No";
             // 
-            // textBox1
+            // txtCount
             // 
-            this.textBox1.Location = new System.Drawing.Point(289, 407);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(92, 23);
-            this.textBox1.TabIndex = 30;
+            this.txtCount.Location = new System.Drawing.Point(289, 407);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(92, 23);
+            this.txtCount.TabIndex = 30;
             // 
             // cmbRooms
             // 
@@ -346,12 +338,12 @@
             this.label9.Text = "Duration";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // textBox2
+            // txtduration
             // 
-            this.textBox2.Location = new System.Drawing.Point(503, 407);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(92, 23);
-            this.textBox2.TabIndex = 34;
+            this.txtduration.Location = new System.Drawing.Point(503, 407);
+            this.txtduration.Name = "txtduration";
+            this.txtduration.Size = new System.Drawing.Size(92, 23);
+            this.txtduration.TabIndex = 34;
             // 
             // label10
             // 
@@ -371,18 +363,18 @@
             this.ClientSize = new System.Drawing.Size(800, 521);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtduration);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbRooms);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCount);
             this.Controls.Add(this.picHome);
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.cmbTag);
             this.Controls.Add(this.cmbSubject);
             this.Controls.Add(this.cmbLecture);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnManageBuildings);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -409,7 +401,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnManageBuildings;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -424,11 +416,11 @@
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.PictureBox picHome;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.ComboBox cmbRooms;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtduration;
         private System.Windows.Forms.Label label10;
     }
 }

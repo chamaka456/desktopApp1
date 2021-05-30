@@ -69,20 +69,9 @@ namespace Manage_Building
             clearFields();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void submit_click(object sender , EventArgs e)
         {
-           
-            //con.OpenConection();
-            //bool result = con.executequery("insert into sesion(Lecture_No,Subject_No,Tag,Session_No,Group_No,Room_Id)values(" + cmbLecture.Text + "," + cmbSubject.Text + "," + cmbTag.Text + "," + cmbSession.Text + "," + cmbGroup.Text + "," + textBox1.Text + ")");
-            //if (result)
-            //{
-            //    MessageBox.Show("Record Inserted successfilly");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Record Insert Error");
-            //}
-            //clearFields();
+            Console.WriteLine("submit");
         }
 
         private void clearFields()
