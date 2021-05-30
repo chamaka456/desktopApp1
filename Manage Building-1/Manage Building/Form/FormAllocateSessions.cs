@@ -69,5 +69,20 @@ namespace Manage_Building
             cmbSubject.SelectedIndex = 0;
             cmbTag.SelectedIndex = 0;
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -117,5 +117,15 @@ namespace Manage_Building
             this.Hide();
             formMain.Show();
         }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
