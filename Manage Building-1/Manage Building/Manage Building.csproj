@@ -122,6 +122,7 @@
     <Compile Include="model\Group.cs" />
     <Compile Include="model\Lecturer.cs" />
     <Compile Include="model\Room.cs" />
+    <Compile Include="model\Session.cs" />
     <Compile Include="model\Subject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
