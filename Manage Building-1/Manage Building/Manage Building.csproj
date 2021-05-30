@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\BuildingController.cs" />
+    <Compile Include="controller\RoomController.cs" />
+    <Compile Include="controller\SessionController.cs" />
     <Compile Include="Form\FormGenerateTimeTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,7 +69,7 @@
     <Compile Include="Form\FormViewManageSession.Designer.cs">
       <DependentUpon>FormViewManageSession.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ConnectorClass.cs" />
+    <Compile Include="ConnectorClass.cs" />
     <Compile Include="Form\FormStatistic.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +118,12 @@
     <Compile Include="Form\FormManageSession.Designer.cs">
       <DependentUpon>FormManageSession.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\Building.cs" />
+    <Compile Include="model\Group.cs" />
+    <Compile Include="model\Lecturer.cs" />
+    <Compile Include="model\Room.cs" />
+    <Compile Include="model\Session.cs" />
+    <Compile Include="model\Subject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleDBDataSet.Designer.cs">

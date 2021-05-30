@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +19,16 @@ namespace Manage_Building
         private String roomId;
         private ConnectorClass con = new ConnectorClass();
 
+        private readonly RoomController roomController;
+        private readonly BuildingController buildingController;
 
-        
+        private List<Building> buildings;
+
         public FormAddRooms()
         {
             InitializeComponent();
+            roomController = new RoomController();
+            buildingController = new BuildingController();
         }
 
         private void btnViewAllRooms_Click(object sender, EventArgs e)
@@ -34,42 +41,14 @@ namespace Manage_Building
         private void FormAddRooms_Load(object sender, EventArgs e)
         {
             cmbCapacity.SelectedIndex = 0;
+            buildings = buildingController.GetAllBuildings();
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(buildings.Select(b => b.name).ToArray());
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked)
-            {
-                roomtypech = "Labortary";
-        
-            }
-            else
-            {
-                roomtypech = "Lecture Hall";
-            }
-           
-            con.OpenConection();
-     
-            bool result = con.executequery("insert into room(room_name,building_id,capcity,room_type)values('" + textBox1.Text + "','" + roomId + "','" + cmbCapacity.Text + "','" + roomtypech + "')");
-            if (result)
-            {
-                MessageBox.Show("Record Inserted successfilly");
-            }
-            else
-            {
-                MessageBox.Show("Record Insert Error");
-            }
-            clearFields();
-        }
 
-        private void clearFields()
-        {
-            textBox1.Clear();
-            textBox2.Clear();
-            cmbCapacity.SelectedIndex = 0;
-        }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+   /*    private void textBox2_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -90,27 +69,57 @@ namespace Manage_Building
                 MessageBox.Show("Error");
             }
         }
+        */
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Room room = new Room()
+            {
+                name = roomname.Text,
+                Capacity = int.Parse(cmbCapacity.Text)
+
+            };       
+
+            if (radioButton1.Checked)
+            {
+                room.roomType = 1;
+            }
+
+            if (radioButton2.Checked)
+            {
+                room.roomType = 2;
+            }
+
+            Building selectedBuilding = buildings.First(b => b.name == comboBox1.SelectedItem.ToString());
+            if(selectedBuilding != null)
+            {
+                room.BuildingId = selectedBuilding.Id;
+            }
+
+            int roomId = roomController.AddNewRoom(room);
+            if (roomId > 0)
+            {
+                labelroomid.Text = roomId.ToString();
+                MessageBox.Show("Room added succesfully");
+            }
+            else
+            {
+                MessageBox.Show("Error occured in adding the room");
+            }
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            clearFields();
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
             con.OpenConection();
-            bool result = con.executequery("delete from room where room_name =" + textBox1.Text);
+            bool result = con.executequery("delete from room where room_name =" + roomname.Text);
 
             if (result)
             {
-                MessageBox.Show("Record delete successfilly");
+                MessageBox.Show("Room deleted successfilly");
             }
             else
             {
                 MessageBox.Show(" Error");
             }
-            clearFields();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -123,6 +132,16 @@ namespace Manage_Building
             FormMain formMain = new FormMain();
             this.Hide();
             formMain.Show();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

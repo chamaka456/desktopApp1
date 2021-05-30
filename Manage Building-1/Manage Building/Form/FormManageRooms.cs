@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +19,13 @@ namespace Manage_Building
         private ConnectorClass con = new ConnectorClass();
 
 
+        private readonly RoomController roomController;
+
+
         public FormManageRooms()
         {
             InitializeComponent();
+            roomController = new RoomController();
         }
 
         private void picHome_Click(object sender, EventArgs e)
@@ -37,11 +43,15 @@ namespace Manage_Building
             formAddRooms.Show();
         }
 
+        private void loadToList()
+        {
+            List<Room> rooms = roomController.GetAllRooms();
+            dataGridView1.DataSource = rooms;
+        }
+
         private void FormManageRooms_Load(object sender, EventArgs e)
         {
-            con.OpenConection();
-           
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
+            loadToList();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -57,49 +67,82 @@ namespace Manage_Building
             cmbCapacity.SelectedIndex = 0;
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("cell is clicked");
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            textBox1.Text = row.Cells[1].Value.ToString();
+            textBox2.Text = row.Cells[0].Value.ToString();
+
+            if (int.Parse(row.Cells[3].Value.ToString()) == 1)
+            {
+                radioLab.Select();
+            }
+            else
+            {
+                radioLec.Select();
+            }
+                cmbCapacity.SelectedItem = row.Cells[2].Value.ToString();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
-                roomtypech = "Labortary";
 
-            }
-            else
-            {
-                roomtypech = "Lecture Hall";
-            }
-
-            con.OpenConection();
-            bool result = con.executequery("update room set room_name='" + textBox1.Text + "',capcity='" + cmbCapacity.Text + "',room_type='" + roomtypech + "' where room_id='" + textBox2.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Delete successfilly");
-            }
-            else
-            {
-                MessageBox.Show("Record Insert Error");
-            }
-            clearFields();
-
-
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("DELETE FROM room where room_id = '" + textBox2.Text + "'");
-            if (result)
+
+        }
+
+        private void ClearSelection(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteSelection(object sender, EventArgs e)
+        {
+            int updateCount = roomController.DeleteRoom(int.Parse(textBox2.Text));
+
+            if (updateCount > 0)
             {
-                MessageBox.Show("Record Deleted successfilly");
+                MessageBox.Show("Room succesfully deleted");
+                loadToList();
+                clearFields();
+            }
+
+            else
+                MessageBox.Show("Room delete failed");
+
+        }
+
+        private void UpdateSelection(object sender, EventArgs e)
+        {
+            Room room = new Room()
+            {
+                Id = int.Parse(textBox2.Text),
+                name = textBox1.Text,
+               Capacity = int.Parse(cmbCapacity.SelectedItem.ToString())
+            };
+            if (radioLab.Checked)
+            {
+                room.roomType = 1;
+            }
+
+            if (radioLec.Checked)
+            {
+                room.roomType = 2;
+            }
+            int updateCount = roomController.UpdateRoom(room);
+
+            if (updateCount > 0)
+            {
+                loadToList();
+                clearFields();
+                MessageBox.Show("Room succesfully updated");
             }
             else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from room");
-
+                MessageBox.Show("Room update failed");
         }
     }
 }

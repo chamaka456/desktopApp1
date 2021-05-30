@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +15,14 @@ namespace Manage_Building
 {
     public partial class FormManageBuildings : Form
     {
-        private ConnectorClass con = new ConnectorClass();
+        //private ConnectorClass con = new ConnectorClass();
+        private readonly BuildingController buildingController;
 
         
         public FormManageBuildings()
         {
             InitializeComponent();
+            buildingController = new BuildingController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -43,12 +47,19 @@ namespace Manage_Building
 
         private void loadToList()
         {
-            con.OpenConection();
-            this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from building"); 
+            //con.OpenConection();
+            //this.dataGridView1.DataSource = con.ShowDataInGridView("Select * from building"); 
+            List<Building> buildings =  buildingController.GetAllBuildings();
+            dataGridView1.DataSource = buildings;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("cell is clicked");
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            txtId.Text = row.Cells[0].Value.ToString();
+            txtName.Text = row.Cells[1].Value.ToString();
+            cmbNumberofRooms.SelectedItem = row.Cells[2].Value.ToString();
 
         }
 
@@ -59,25 +70,13 @@ namespace Manage_Building
 
         private void button2_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("update building set buildng_name = '" + textBox2.Text + "', number_room = '" + cmbNumberofRooms.Text + "' where building_id = '" + textBox1.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Updated successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
 
-            loadToList();
         }
 
         private void clearFields()
         {
-            textBox1.Clear();
-            textBox2.Clear();
+            txtId.Clear();
+            txtName.Clear();
             cmbNumberofRooms.SelectedIndex = 0;
         }
 
@@ -88,19 +87,40 @@ namespace Manage_Building
 
         private void button4_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("DELETE FROM building where building_id = '" + textBox1.Text + "'");
-            if (result)
-            {
-                MessageBox.Show("Record Deleted successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
-            clearFields();
-            loadToList();
 
+        }
+
+
+        private void UpdateSelection(object sender, EventArgs e)
+        {
+            Building building = new Building()
+            {
+                Id = int.Parse(txtId.Text),
+                name = txtName.Text,
+                RoomsCount = int.Parse(cmbNumberofRooms.SelectedItem.ToString())
+            };
+            int updateCount = buildingController.UpdateBuilding(building);
+
+            if (updateCount > 0)
+                MessageBox.Show("Building succesfully updated");
+            else
+                MessageBox.Show("Building update failed");
+        }
+
+        private void DeleteSelection(object sender, EventArgs e)
+        {
+
+            int updateCount = buildingController.DeleteBuilding(int.Parse(txtId.Text));
+
+            if (updateCount > 0)
+            {
+                MessageBox.Show("Building succesfully deleted");
+                loadToList();
+                clearFields();
+            }
+                
+            else
+                MessageBox.Show("Building delete failed");
         }
     }
 }

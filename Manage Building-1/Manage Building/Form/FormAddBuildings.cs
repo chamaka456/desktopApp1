@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +16,13 @@ namespace Manage_Building
     public partial class FormAddBuildings : Form
     {
 
-        private ConnectorClass con = new ConnectorClass();
+        //private ConnectorClass con = new ConnectorClass();
+        private readonly BuildingController buildingController;
 
         public FormAddBuildings()
         {
             InitializeComponent();
+            buildingController = new BuildingController();
         }
 
         private void btnManageBuildings_Click(object sender, EventArgs e)
@@ -26,6 +30,7 @@ namespace Manage_Building
             FormManageBuildings formManageBuildings = new FormManageBuildings();
             this.Hide();
             formManageBuildings.Show();
+
           
         }
 
@@ -41,26 +46,36 @@ namespace Manage_Building
             cmbNumberofRooms.SelectedIndex = 0;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void addNewBuilding(object sender , EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("insert into building(building_id, buildng_name, number_room)values('" + textBox2.Text + "', '" + textBox1.Text + "', '" + cmbNumberofRooms.Text + "')");
-            if (result)
+            Building building = new Building()
             {
-                MessageBox.Show("Record Inserted successfilly");
+                name = d.Text,
+                RoomsCount = int.Parse(cmbNumberofRooms.Text)
+            };
+            int buldingId = buildingController.AddNewBuilding(building);
+            if(buldingId > 0)
+            {
+                labelId.Text = buldingId.ToString();
+                MessageBox.Show("Building added succesfully");
             }
             else
             {
-                MessageBox.Show("Record Insert Error");
+                MessageBox.Show("Error occured in adding the building");
             }
-            clearFields();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            con.OpenConection();
-            bool result = con.executequery("delete from building where building_id = " + textBox2.Text);
-            if (result)
+            //con.OpenConection();
+            //bool result = con.executequery("delete from building where building_id = " + textBox2.Text);
+            if (true)
             {
                 MessageBox.Show("Record Delete successfilly");
             }
@@ -78,9 +93,19 @@ namespace Manage_Building
 
         private void clearFields()
         {
-            textBox1.Clear();
-            textBox2.Clear();
+            d.Clear();
+            //textBox2.Clear();
             cmbNumberofRooms.SelectedIndex = 0;
+        }
+
+        private void cmbNumberofRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
