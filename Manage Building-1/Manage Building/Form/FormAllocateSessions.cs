@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Manage_Building.controller;
+using Manage_Building.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +15,12 @@ namespace Manage_Building
 {
     public partial class FormAllocateSessions : Form
     {
-        private ConnectorClass con = new ConnectorClass();
+        private readonly SessionController sessionController;
 
         public FormAllocateSessions()
         {
             InitializeComponent();
+            sessionController = new SessionController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -37,6 +40,16 @@ namespace Manage_Building
         private void FormAllocateSessions_Load(object sender, EventArgs e)
         {
             clearFields();
+            LoadDataSet();
+        }
+
+        private void LoadDataSet()
+        {
+            List<Lecturer> lecturers = sessionController.getAllLecturers();
+            cmbLecture.Items.Clear();
+            cmbLecture.Items.AddRange(lecturers.Select(l => l.name).ToArray());
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)

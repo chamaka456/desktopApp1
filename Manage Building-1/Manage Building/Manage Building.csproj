@@ -119,6 +119,7 @@
       <DependentUpon>FormManageSession.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Building.cs" />
+    <Compile Include="model\Lecturer.cs" />
     <Compile Include="model\Room.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
