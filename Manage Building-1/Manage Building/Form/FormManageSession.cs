@@ -26,7 +26,7 @@ namespace Manage_Building
                     SqlDataReader reader = con.DataReader("select room_id from room");
                     while (reader.Read())
                     {
-                        cmbRooms.Items.Add(reader.GetValue(0).ToString());
+                        //cmbRooms.Items.Add(reader.GetValue(0).ToString());
 
                     }
                     reader.Close();
@@ -34,7 +34,7 @@ namespace Manage_Building
                     SqlDataReader reader2 = con.DataReader("select Session_no from sesion");
                     while (reader2.Read())
                     {
-                       cmbSession.Items.Add(reader2.GetValue(0).ToString());
+                       //cmbSession.Items.Add(reader2.GetValue(0).ToString());
 
                     }
 
@@ -65,40 +65,46 @@ namespace Manage_Building
 
         private void FormManageSession_Load(object sender, EventArgs e)
         {
+            LoadInitialData();
+        }
+
+        private void LoadInitialData()
+        {
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            bool result = con.executequery("insert into mangesesion (Session_no,Room_id,Reson)values('" + cmbSession.Text + "','" + cmbRooms.Text + "','" + textBox1.Text + "')");
-            if (result)
-            {
-                MessageBox.Show("Record Updated successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
+            //bool result = con.executequery("insert into mangesesion (Session_no,Room_id,Reson)values('" + cmbSession.Text + "','" + cmbRooms.Text + "','" + textBox1.Text + "')");
+            //if (result)
+            //{
+            //    MessageBox.Show("Record Updated successfilly");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(" Error");
+            //}
             clearFields();
         }
 
         private void clearFields()
         {
-            cmbRooms.SelectedIndex = 0;
-            cmbSession.SelectedIndex = 0;
-            textBox1.Clear();
+            //cmbRooms.SelectedIndex = 0;
+            //cmbSession.SelectedIndex = 0;
+            //textBox1.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool result = con.executequery("delete from mangesesion where room_id =" + cmbRooms.Text);
-            if (result)
-            {
-                MessageBox.Show("Record deleted successfilly");
-            }
-            else
-            {
-                MessageBox.Show(" Error");
-            }
+            //bool result = con.executequery("delete from mangesesion where room_id =" + cmbRooms.Text);
+            //if (result)
+            //{
+            //    MessageBox.Show("Record deleted successfilly");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(" Error");
+            //}
         }
 
         private void label4_Click(object sender, EventArgs e)
