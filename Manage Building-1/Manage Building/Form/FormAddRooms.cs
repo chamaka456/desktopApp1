@@ -99,11 +99,11 @@ namespace Manage_Building
             if (roomId > 0)
             {
                 labelroomid.Text = roomId.ToString();
-                MessageBox.Show("Building added succesfully");
+                MessageBox.Show("Room added succesfully");
             }
             else
             {
-                MessageBox.Show("Error occured in adding the building");
+                MessageBox.Show("Error occured in adding the room");
             }
         }
 

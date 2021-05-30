@@ -43,10 +43,15 @@ namespace Manage_Building
             formAddRooms.Show();
         }
 
-        private void FormManageRooms_Load(object sender, EventArgs e)
+        private void loadToList()
         {
             List<Room> rooms = roomController.GetAllRooms();
             dataGridView1.DataSource = rooms;
+        }
+
+        private void FormManageRooms_Load(object sender, EventArgs e)
+        {
+            loadToList();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -60,6 +65,15 @@ namespace Manage_Building
             textBox1.Clear();
             textBox2.Clear();
             cmbCapacity.SelectedIndex = 0;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("cell is clicked");
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            textBox1.Text = row.Cells[1].Value.ToString();
+            textBox2.Text = row.Cells[0].Value.ToString();
+            cmbCapacity.SelectedItem = row.Cells[2].Value.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,14 +91,45 @@ namespace Manage_Building
 
         }
 
-        private void UpdateSelection(object sender, EventArgs e)
+        private void DeleteSelection(object sender, EventArgs e)
         {
+            int updateCount = roomController.DeleteRoom(int.Parse(textBox1.Text));
+
+            if (updateCount > 0)
+            {
+                MessageBox.Show("Room succesfully deleted");
+                loadToList();
+                clearFields();
+            }
+
+            else
+                MessageBox.Show("Room delete failed");
 
         }
 
-        private void DeleteSelection(object sender, EventArgs e)
+        private void UpdateSelection(object sender, EventArgs e)
         {
+            Room room = new Room()
+            {
+                Id = int.Parse(textBox1.Text),
+                name = textBox2.Text,
+                Capacity = int.Parse(cmbCapacity.SelectedItem.ToString())
+            };
+            if (radioButton1.Checked)
+            {
+                room.type = 1;
+            }
 
+            if (radioButton2.Checked)
+            {
+                room.type = 2;
+            }
+            int updateCount = roomController.UpdateRoom(room);
+
+            if (updateCount > 0)
+                MessageBox.Show("Room succesfully updated");
+            else
+                MessageBox.Show("Room update failed");
         }
     }
 }

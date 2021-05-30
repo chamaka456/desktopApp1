@@ -18,5 +18,7 @@ namespace Manage_Building.model
 
         public int BuildingId { get; set; }
 
+        public int tag { get; set; }
+
     }
 }
