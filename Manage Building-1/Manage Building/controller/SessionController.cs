@@ -65,6 +65,31 @@ namespace Manage_Building.controller
             dbConnection.CloseConnection();
 
             return groups;
+        } 
+        
+        
+        public List<Subject> getAllSubjects()
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+            List<Subject> subjects = new List<Subject>();
+
+            cmd.CommandText = @"SELECT subjectCode  , name FROM [dbo].[subject]";
+
+            SqlDataReader reader = dbConnection.queryData(cmd);
+
+            while (reader.Read())
+            {
+                Subject subject = new Subject()
+                {
+                    code = reader.GetString(0),
+                    name = reader.GetString(1)
+                };
+
+                subjects.Add(subject);
+            }
+            dbConnection.CloseConnection();
+
+            return subjects;
         }
 
         

@@ -58,6 +58,10 @@ namespace Manage_Building
             List<Room> rooms = roomController.GetAllRooms();
             cmbRooms.Items.Clear();
             cmbRooms.Items.AddRange(rooms.Select(r => r.name).ToArray());
+
+            List<Subject> subjects = sessionController.getAllSubjects();
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(subjects.Select(s => s.name).ToArray());
         }
 
         private void button3_Click(object sender, EventArgs e)
