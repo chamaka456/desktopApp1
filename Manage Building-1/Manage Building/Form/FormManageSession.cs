@@ -18,12 +18,18 @@ namespace Manage_Building
        // private ConnectorClass con = new ConnectorClass();
 
         private readonly SessionController sessionController;
+        private readonly RoomController roomController;
+        List<Lecturer> Lecturers;
+        List<Subject> Subjects;
+        List<Group> Groups;
+        List<Room> Rooms;
 
 
         public FormManageSession()
         {
             InitializeComponent();
             sessionController = new SessionController();
+            roomController = new RoomController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -49,19 +55,24 @@ namespace Manage_Building
         {
             List<Session> session = sessionController.getAllSessions();
             dataGridView1.DataSource = session;
+
+
+            Lecturers = sessionController.getAllLecturers();
+            lectxt.Items.Clear();
+            lectxt.Items.AddRange(Lecturers.Select(l => l.name).ToArray());
+
+            Groups = sessionController.getAllGroups();
+            gptxt.Items.Clear();
+            gptxt.Items.AddRange(Groups.Select(g => g.name).ToArray());
+
+            Rooms = roomController.GetAllRooms();
+            romtxt.Items.Clear();
+            romtxt.Items.AddRange(Rooms.Select(r => r.name).ToArray());
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //bool result = con.executequery("insert into mangesesion (Session_no,Room_id,Reson)values('" + cmbSession.Text + "','" + cmbRooms.Text + "','" + textBox1.Text + "')");
-            //if (result)
-            //{
-            //    MessageBox.Show("Record Updated successfilly");
-            //}
-            //else
-            //{
-            //    MessageBox.Show(" Error");
-            //}
+            
             clearFields();
         }
 
@@ -132,13 +143,28 @@ namespace Manage_Building
             Session session = new Session()
             {
                 Id = int.Parse(sestext.Text),
-                roomId = int.Parse(romtxt.Text),
-                lectureId = int.Parse(lectxt.SelectedItem.ToString()),
+               // roomId = int.Parse(romtxt.Text),
+               // lectureId = int.Parse(lectxt.SelectedItem.ToString()),
                 tag = tagtxt.SelectedItem.ToString(),
-                groupId = int.Parse(gptxt.SelectedItem.ToString()),
+               // groupId = int.Parse(gptxt.SelectedItem.ToString()),
                 count = int.Parse(counttxt.Text),
-                duaration = int.Parse(durtxt.Text)
+                duaration = int.Parse(durtxt.Text),
+                
             };
+            Room roomSel = Rooms.First(r => r.name == romtxt.SelectedItem.ToString());
+            if (roomSel != null)
+                session.roomId = roomSel.Id;           
+            
+            
+            Group groupSel = Groups.First(g => g.name == gptxt.SelectedItem.ToString());
+            if (groupSel != null)
+                session.groupId = groupSel.Id;     
+            
+            Lecturer lectureSel = Lecturers.First(l => l.name == lectxt.SelectedItem.ToString());
+            if (lectureSel != null)
+                session.lectureId = lectureSel.Id;
+
+
             int updateCount = sessionController.UpdateSession(session);
 
             if (updateCount > 0)

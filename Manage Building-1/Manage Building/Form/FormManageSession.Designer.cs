@@ -68,7 +68,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(315, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(342, 41);
+            this.label1.Size = new System.Drawing.Size(271, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manage Session Rooms";
             // 
@@ -159,7 +159,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(631, 197);
             this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label9
             // 
@@ -168,7 +168,7 @@
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(373, 433);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 20);
+            this.label9.Size = new System.Drawing.Size(54, 15);
             this.label9.TabIndex = 39;
             this.label9.Text = "Duration";
             // 
@@ -177,7 +177,7 @@
             this.durtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.durtxt.Location = new System.Drawing.Point(449, 433);
             this.durtxt.Name = "durtxt";
-            this.durtxt.Size = new System.Drawing.Size(92, 27);
+            this.durtxt.Size = new System.Drawing.Size(92, 23);
             this.durtxt.TabIndex = 38;
             // 
             // label8
@@ -187,7 +187,7 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(166, 436);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 20);
+            this.label8.Size = new System.Drawing.Size(40, 15);
             this.label8.TabIndex = 37;
             this.label8.Text = "Group";
             // 
@@ -198,7 +198,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(426, 384);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.Size = new System.Drawing.Size(50, 15);
             this.label2.TabIndex = 43;
             this.label2.Text = "Lecturer";
             // 
@@ -209,7 +209,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(248, 387);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 20);
+            this.label3.Size = new System.Drawing.Size(50, 15);
             this.label3.TabIndex = 41;
             this.label3.Text = "RoomId";
             // 
@@ -220,7 +220,7 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(620, 384);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
+            this.label5.Size = new System.Drawing.Size(26, 15);
             this.label5.TabIndex = 49;
             this.label5.Text = "Tag";
             // 
@@ -231,7 +231,7 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(586, 436);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 20);
+            this.label7.Size = new System.Drawing.Size(39, 15);
             this.label7.TabIndex = 45;
             this.label7.Text = "Count";
             // 
@@ -240,7 +240,7 @@
             this.counttxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.counttxt.Location = new System.Drawing.Point(642, 433);
             this.counttxt.Name = "counttxt";
-            this.counttxt.Size = new System.Drawing.Size(92, 27);
+            this.counttxt.Size = new System.Drawing.Size(92, 23);
             this.counttxt.TabIndex = 44;
             // 
             // romtxt
@@ -261,7 +261,7 @@
             "10"});
             this.romtxt.Location = new System.Drawing.Point(316, 384);
             this.romtxt.Name = "romtxt";
-            this.romtxt.Size = new System.Drawing.Size(93, 28);
+            this.romtxt.Size = new System.Drawing.Size(93, 23);
             this.romtxt.TabIndex = 50;
             // 
             // lectxt
@@ -282,7 +282,7 @@
             "10"});
             this.lectxt.Location = new System.Drawing.Point(502, 384);
             this.lectxt.Name = "lectxt";
-            this.lectxt.Size = new System.Drawing.Size(93, 28);
+            this.lectxt.Size = new System.Drawing.Size(93, 23);
             this.lectxt.TabIndex = 51;
             // 
             // tagtxt
@@ -290,20 +290,12 @@
             this.tagtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tagtxt.FormattingEnabled = true;
             this.tagtxt.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
+            "Lecture",
+            "Lab",
+            "Tute"});
             this.tagtxt.Location = new System.Drawing.Point(679, 381);
             this.tagtxt.Name = "tagtxt";
-            this.tagtxt.Size = new System.Drawing.Size(93, 28);
+            this.tagtxt.Size = new System.Drawing.Size(93, 23);
             this.tagtxt.TabIndex = 52;
             // 
             // label4
@@ -313,7 +305,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(72, 387);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 20);
+            this.label4.Size = new System.Drawing.Size(47, 15);
             this.label4.TabIndex = 53;
             this.label4.Text = "Session";
             this.label4.Click += new System.EventHandler(this.label4_Click_1);
@@ -324,7 +316,7 @@
             this.sestext.Location = new System.Drawing.Point(137, 384);
             this.sestext.Name = "sestext";
             this.sestext.ReadOnly = true;
-            this.sestext.Size = new System.Drawing.Size(92, 27);
+            this.sestext.Size = new System.Drawing.Size(92, 23);
             this.sestext.TabIndex = 54;
             // 
             // gptxt
@@ -345,12 +337,12 @@
             "10"});
             this.gptxt.Location = new System.Drawing.Point(241, 433);
             this.gptxt.Name = "gptxt";
-            this.gptxt.Size = new System.Drawing.Size(93, 28);
+            this.gptxt.Size = new System.Drawing.Size(93, 23);
             this.gptxt.TabIndex = 55;
             // 
             // FormManageSession
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(884, 543);

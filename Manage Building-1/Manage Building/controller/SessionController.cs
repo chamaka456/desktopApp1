@@ -22,11 +22,11 @@ namespace Manage_Building.controller
             SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
 
             cmd.CommandText = @"UPDATE [dbo].[sesion]
-                                set [Lecture_no]= @lec , [Subject_no] = @sub, [Tag] = @tag, [Group_no] = @gp, [Room_id] = @room, [count] = @count,  [duration] = @dur
+                                set [Lecture_no]= @lec ,  [Tag] = @tag, [Group_no] = @gp, [Room_id] = @room, [count] = @count,  [duration] = @dur
                                 WHERE [id] = @id";
 
             cmd.Parameters.Add(new SqlParameter("@lec", session.lectureId));
-            cmd.Parameters.Add(new SqlParameter("@sub", session.subjectId));
+            //cmd.Parameters.Add(new SqlParameter("@sub", session.subjectId));
             cmd.Parameters.Add(new SqlParameter("@tag", session.tag));
             cmd.Parameters.Add(new SqlParameter("@gp", session.groupId));
             cmd.Parameters.Add(new SqlParameter("@room", session.roomId));
