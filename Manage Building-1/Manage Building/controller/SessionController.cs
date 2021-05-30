@@ -42,5 +42,31 @@ namespace Manage_Building.controller
 
             return lecturers;
         }
+        
+        public List<Group> getAllGroups()
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+            List<Group> groups = new List<Group>();
+
+            cmd.CommandText = @"SELECT Id , name FROM [dbo].[groups]";
+
+            SqlDataReader reader = dbConnection.queryData(cmd);
+
+            while (reader.Read())
+            {
+                Group gp = new Group()
+                {
+                    Id = reader.GetInt32(0),
+                    name = reader.GetString(1)
+                };
+
+                groups.Add(gp);
+            }
+            dbConnection.CloseConnection();
+
+            return groups;
+        }
+
+        
     }
 }

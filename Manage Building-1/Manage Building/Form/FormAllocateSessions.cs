@@ -16,11 +16,13 @@ namespace Manage_Building
     public partial class FormAllocateSessions : Form
     {
         private readonly SessionController sessionController;
+        private readonly RoomController roomController;
 
         public FormAllocateSessions()
         {
             InitializeComponent();
             sessionController = new SessionController();
+            roomController = new RoomController();
         }
 
         private void picBack_Click(object sender, EventArgs e)
@@ -49,7 +51,13 @@ namespace Manage_Building
             cmbLecture.Items.Clear();
             cmbLecture.Items.AddRange(lecturers.Select(l => l.name).ToArray());
 
+            List<Group> groups = sessionController.getAllGroups();
+            cmbGroup.Items.Clear();
+            cmbGroup.Items.AddRange(groups.Select(g => g.name).ToArray());
 
+            List<Room> rooms = roomController.GetAllRooms();
+            cmbRooms.Items.Clear();
+            cmbRooms.Items.AddRange(rooms.Select(r => r.name).ToArray());
         }
 
         private void button3_Click(object sender, EventArgs e)
