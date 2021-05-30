@@ -95,6 +95,20 @@ namespace Manage_Building
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("cell is clicked");
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            sestext.Text = row.Cells[0].Value.ToString();
+            romtxt.SelectedItem = row.Cells[6].Value.ToString();
+            lectxt.SelectedItem = row.Cells[4].Value.ToString();
+            tagtxt.SelectedItem = row.Cells[3].Value.ToString();
+            gptxt.SelectedItem = row.Cells[5].Value.ToString();
+            durtxt.Text = row.Cells[2].Value.ToString();
+            counttxt.Text = row.Cells[1].Value.ToString();
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             FormViewManageSession formMain = new FormViewManageSession();

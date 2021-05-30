@@ -101,7 +101,7 @@ namespace Manage_Building.controller
             List<Session> sessions = new List<Session>();
 
             cmd.CommandText = @"SELECT id, Lecture_no, Subject_no, Tag ,Group_no, Room_id,count , duration 
-                              FROM [dbo].[groups]";
+                              FROM [dbo].[sesion]";
 
             SqlDataReader reader = dbConnection.queryData(cmd);
 
