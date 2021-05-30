@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="controller\BuildingController.cs" />
     <Compile Include="controller\RoomController.cs" />
+    <Compile Include="controller\SessionController.cs" />
     <Compile Include="Form\FormGenerateTimeTable.cs">
       <SubType>Form</SubType>
     </Compile>
