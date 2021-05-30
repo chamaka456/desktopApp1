@@ -17,6 +17,35 @@ namespace Manage_Building.controller
             this.dbConnection = new ConnectorClass();
         }
 
+        public int UpdateSession(Session session)
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"UPDATE [dbo].[sesion]
+                                set [Lecture_no]= @lec , [Subject_no] = @sub, [Tag] = @tag, [Group_no] = @gp, [Room_id] = @room, [count] = @count,  [duration] = @dur
+                                WHERE [id] = @id";
+
+            cmd.Parameters.Add(new SqlParameter("@lec", session.name));
+            cmd.Parameters.Add(new SqlParameter("@sub", session.name));
+            cmd.Parameters.Add(new SqlParameter("@tag", session.name));
+            cmd.Parameters.Add(new SqlParameter("@gp", session.name));
+            cmd.Parameters.Add(new SqlParameter("@room", session.name));
+            cmd.Parameters.Add(new SqlParameter("@count", session.RoomsCount));
+            cmd.Parameters.Add(new SqlParameter("@dur", session.name));
+            cmd.Parameters.Add(new SqlParameter("@id", session.Id));
+
+            return dbConnection.excuteQueryRowcount(cmd);
+        }
+
+        public int DeleteBuilding(int id)
+        {
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"DELETE FROM [dbo].[building]
+                                WHERE [id] = @id";
+            cmd.Parameters.Add(new SqlParameter("@id", id));
+            return dbConnection.excuteQueryRowcount(cmd);
+        }
 
         public List<Lecturer> getAllLecturers()
         {
