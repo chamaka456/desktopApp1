@@ -92,6 +92,25 @@ namespace Manage_Building.controller
             return subjects;
         }
 
+        public int AddSession(Session session)
+        {
+            Console.WriteLine(session);
+            SqlCommand cmd = new SqlCommand(string.Empty, dbConnection.GetConnection());
+
+            cmd.CommandText = @"INSERT INTO [dbo].[sesion] ([count], [duration] , [Tag] , [Lecture_no] , [Group_no] , [Room_id] , [Subject_no]) output INSERTED.id
+                                VALUES(@count, @duration, @tag , @lecId , @grpId, @roomId ,@subcode)";
+
+            cmd.Parameters.Add(new SqlParameter("@count", session.count));
+            cmd.Parameters.Add(new SqlParameter("@duration", session.duaration));
+            cmd.Parameters.Add(new SqlParameter("@tag", session.tag));
+            cmd.Parameters.Add(new SqlParameter("@lecId", session.lectureId));
+            cmd.Parameters.Add(new SqlParameter("@grpId", session.groupId));
+            cmd.Parameters.Add(new SqlParameter("@roomId", session.roomId));
+            cmd.Parameters.Add(new SqlParameter("@subCode", session.subjectId));
+            return dbConnection.executequery(cmd);
+           
+        }
+
         
     }
 }

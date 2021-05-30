@@ -18,6 +18,11 @@ namespace Manage_Building
         private readonly SessionController sessionController;
         private readonly RoomController roomController;
 
+        List<Lecturer> Lecturers;
+        List<Subject> Subjects;
+        List<Group> Groups;
+        List<Room> Rooms;
+
         public FormAllocateSessions()
         {
             InitializeComponent();
@@ -47,21 +52,21 @@ namespace Manage_Building
 
         private void LoadDataSet()
         {
-            List<Lecturer> lecturers = sessionController.getAllLecturers();
+            Lecturers = sessionController.getAllLecturers();
             cmbLecture.Items.Clear();
-            cmbLecture.Items.AddRange(lecturers.Select(l => l.name).ToArray());
+            cmbLecture.Items.AddRange(Lecturers.Select(l => l.name).ToArray());
 
-            List<Group> groups = sessionController.getAllGroups();
+            Groups = sessionController.getAllGroups();
             cmbGroup.Items.Clear();
-            cmbGroup.Items.AddRange(groups.Select(g => g.name).ToArray());
+            cmbGroup.Items.AddRange(Groups.Select(g => g.name).ToArray());
 
-            List<Room> rooms = roomController.GetAllRooms();
+            Rooms = roomController.GetAllRooms();
             cmbRooms.Items.Clear();
-            cmbRooms.Items.AddRange(rooms.Select(r => r.name).ToArray());
+            cmbRooms.Items.AddRange(Rooms.Select(r => r.name).ToArray());
 
-            List<Subject> subjects = sessionController.getAllSubjects();
+            Subjects = sessionController.getAllSubjects();
             cmbSubject.Items.Clear();
-            cmbSubject.Items.AddRange(subjects.Select(s => s.name).ToArray());
+            cmbSubject.Items.AddRange(Subjects.Select(s => s.name).ToArray());
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -72,6 +77,52 @@ namespace Manage_Building
         private void submit_click(object sender , EventArgs e)
         {
             Console.WriteLine("submit");
+            try
+            {
+                Session session = new Session()
+                {
+                    count = int.Parse(txtCount.Text),
+                    duaration = int.Parse(txtduration.Text),
+                    tag = cmbTag.SelectedItem.ToString()
+                };
+
+                Subject selSubject = Subjects.First(s => s.name == cmbSubject.SelectedItem.ToString());
+                if (selSubject != null)
+                    session.subjectId = selSubject.code;
+
+                Group selGroup = Groups.First(g => g.name == cmbGroup.SelectedItem.ToString());
+                if (selGroup != null)
+                    session.groupId = selGroup.Id;
+
+                Room selRoom = Rooms.First(r => r.name == cmbRooms.SelectedItem.ToString());
+                if (selRoom != null)
+                    session.roomId = selRoom.Id;
+
+                Lecturer selLecture = Lecturers.First(l => l.name == cmbLecture.SelectedItem.ToString());
+                if (selLecture != null)
+                    session.lectureId = selLecture.Id;
+
+                int sessionId = sessionController.AddSession(session);
+
+                if (sessionId > 0)
+                {
+                    lblSessionId.Text = sessionId.ToString();
+                    MessageBox.Show("Session added succesfully");
+                }
+                else
+                {
+                    MessageBox.Show("Error occured in adding the session");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Error Allocating Sessions");
+            }
+            
+
+
         }
 
         private void clearFields()

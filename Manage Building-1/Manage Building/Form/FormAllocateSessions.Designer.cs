@@ -51,6 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtduration = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblSessionId = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBack)).BeginInit();
@@ -355,12 +356,23 @@
             this.label10.Size = new System.Drawing.Size(0, 15);
             this.label10.TabIndex = 36;
             // 
+            // lblSessionId
+            // 
+            this.lblSessionId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblSessionId.AutoSize = true;
+            this.lblSessionId.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSessionId.Location = new System.Drawing.Point(375, 502);
+            this.lblSessionId.Name = "lblSessionId";
+            this.lblSessionId.Size = new System.Drawing.Size(0, 15);
+            this.lblSessionId.TabIndex = 37;
+            // 
             // FormAllocateSessions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 521);
+            this.Controls.Add(this.lblSessionId);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtduration);
@@ -422,5 +434,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtduration;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblSessionId;
     }
 }
