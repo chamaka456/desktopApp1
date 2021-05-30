@@ -39,19 +39,19 @@
             this.sampleDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.durtxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.cmbSubject = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.counttxt = new System.Windows.Forms.TextBox();
+            this.romtxt = new System.Windows.Forms.ComboBox();
+            this.lectxt = new System.Windows.Forms.ComboBox();
+            this.tagtxt = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.sestext = new System.Windows.Forms.TextBox();
+            this.gptxt = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBack)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,7 +84,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Delete_Click);
             // 
             // button2
             // 
@@ -98,7 +98,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Update";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Update_Click);
             // 
             // picBack
             // 
@@ -171,12 +171,12 @@
             this.label9.TabIndex = 39;
             this.label9.Text = "Duration";
             // 
-            // textBox2
+            // durtxt
             // 
-            this.textBox2.Location = new System.Drawing.Point(407, 422);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(92, 27);
-            this.textBox2.TabIndex = 38;
+            this.durtxt.Location = new System.Drawing.Point(407, 422);
+            this.durtxt.Name = "durtxt";
+            this.durtxt.Size = new System.Drawing.Size(92, 27);
+            this.durtxt.TabIndex = 38;
             // 
             // label8
             // 
@@ -233,18 +233,18 @@
             this.label7.TabIndex = 45;
             this.label7.Text = "Count";
             // 
-            // textBox8
+            // counttxt
             // 
-            this.textBox8.Location = new System.Drawing.Point(613, 422);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(92, 27);
-            this.textBox8.TabIndex = 44;
+            this.counttxt.Location = new System.Drawing.Point(613, 422);
+            this.counttxt.Name = "counttxt";
+            this.counttxt.Size = new System.Drawing.Size(92, 27);
+            this.counttxt.TabIndex = 44;
             // 
-            // cmbSubject
+            // romtxt
             // 
-            this.cmbSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbSubject.FormattingEnabled = true;
-            this.cmbSubject.Items.AddRange(new object[] {
+            this.romtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.romtxt.FormattingEnabled = true;
+            this.romtxt.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -256,16 +256,16 @@
             "8",
             "9",
             "10"});
-            this.cmbSubject.Location = new System.Drawing.Point(274, 373);
-            this.cmbSubject.Name = "cmbSubject";
-            this.cmbSubject.Size = new System.Drawing.Size(93, 28);
-            this.cmbSubject.TabIndex = 50;
+            this.romtxt.Location = new System.Drawing.Point(274, 373);
+            this.romtxt.Name = "romtxt";
+            this.romtxt.Size = new System.Drawing.Size(93, 28);
+            this.romtxt.TabIndex = 50;
             // 
-            // comboBox1
+            // lectxt
             // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.lectxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lectxt.FormattingEnabled = true;
+            this.lectxt.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -277,16 +277,16 @@
             "8",
             "9",
             "10"});
-            this.comboBox1.Location = new System.Drawing.Point(460, 373);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(93, 28);
-            this.comboBox1.TabIndex = 51;
+            this.lectxt.Location = new System.Drawing.Point(460, 373);
+            this.lectxt.Name = "lectxt";
+            this.lectxt.Size = new System.Drawing.Size(93, 28);
+            this.lectxt.TabIndex = 51;
             // 
-            // comboBox2
+            // tagtxt
             // 
-            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.tagtxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tagtxt.FormattingEnabled = true;
+            this.tagtxt.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -298,10 +298,10 @@
             "8",
             "9",
             "10"});
-            this.comboBox2.Location = new System.Drawing.Point(647, 373);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(93, 28);
-            this.comboBox2.TabIndex = 52;
+            this.tagtxt.Location = new System.Drawing.Point(647, 373);
+            this.tagtxt.Name = "tagtxt";
+            this.tagtxt.Size = new System.Drawing.Size(93, 28);
+            this.tagtxt.TabIndex = 52;
             // 
             // label4
             // 
@@ -315,19 +315,19 @@
             this.label4.Text = "Session";
             this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
-            // textBox3
+            // sestext
             // 
-            this.textBox3.Location = new System.Drawing.Point(95, 373);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(92, 27);
-            this.textBox3.TabIndex = 54;
+            this.sestext.Location = new System.Drawing.Point(95, 373);
+            this.sestext.Name = "sestext";
+            this.sestext.ReadOnly = true;
+            this.sestext.Size = new System.Drawing.Size(92, 27);
+            this.sestext.TabIndex = 54;
             // 
-            // comboBox3
+            // gptxt
             // 
-            this.comboBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.gptxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gptxt.FormattingEnabled = true;
+            this.gptxt.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -339,10 +339,10 @@
             "8",
             "9",
             "10"});
-            this.comboBox3.Location = new System.Drawing.Point(199, 422);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(93, 28);
-            this.comboBox3.TabIndex = 55;
+            this.gptxt.Location = new System.Drawing.Point(199, 422);
+            this.gptxt.Name = "gptxt";
+            this.gptxt.Size = new System.Drawing.Size(93, 28);
+            this.gptxt.TabIndex = 55;
             // 
             // FormManageSession
             // 
@@ -350,19 +350,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 521);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.gptxt);
+            this.Controls.Add(this.sestext);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.cmbSubject);
+            this.Controls.Add(this.tagtxt);
+            this.Controls.Add(this.lectxt);
+            this.Controls.Add(this.romtxt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.counttxt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.durtxt);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -401,18 +401,18 @@
         private System.Windows.Forms.BindingSource sampleDBDataSetBindingSource;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox durtxt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.ComboBox cmbSubject;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox counttxt;
+        private System.Windows.Forms.ComboBox romtxt;
+        private System.Windows.Forms.ComboBox lectxt;
+        private System.Windows.Forms.ComboBox tagtxt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox sestext;
+        private System.Windows.Forms.ComboBox gptxt;
     }
 }
