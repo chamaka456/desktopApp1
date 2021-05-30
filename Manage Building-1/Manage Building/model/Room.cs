@@ -8,13 +8,14 @@ namespace Manage_Building.model
 {
     public class Room
     {
+        
         public int Id { get; set; }
 
         public string name { get; set; }
 
         public int Capacity { get; set; }
 
-        public int type { get; set; }
+        public int roomType { get; set; }
 
         public int BuildingId { get; set; }
 

@@ -81,12 +81,12 @@ namespace Manage_Building
 
             if (radioButton1.Checked)
             {
-                room.type = 1;
+                room.roomType = 1;
             }
 
             if (radioButton2.Checked)
             {
-                room.type = 2;
+                room.roomType = 2;
             }
 
             Building selectedBuilding = buildings.First(b => b.name == comboBox1.SelectedItem.ToString());

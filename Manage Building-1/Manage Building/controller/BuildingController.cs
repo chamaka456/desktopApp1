@@ -37,10 +37,12 @@ namespace Manage_Building.controller
 
             cmd.CommandText = @"UPDATE [dbo].[building]
                                 set [buildng_name]= @name , [roomsCount] = @count
-                                WHERE [id] = 4";
+                                WHERE [id] = @id";
 
             cmd.Parameters.Add(new SqlParameter("@name", building.name));
             cmd.Parameters.Add(new SqlParameter("@count", building.RoomsCount));
+            cmd.Parameters.Add(new SqlParameter("@id", building.Id));
+            
             return dbConnection.excuteQueryRowcount(cmd);
         } 
         

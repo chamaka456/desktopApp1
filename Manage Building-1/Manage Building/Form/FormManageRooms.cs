@@ -73,7 +73,16 @@ namespace Manage_Building
             DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
             textBox1.Text = row.Cells[1].Value.ToString();
             textBox2.Text = row.Cells[0].Value.ToString();
-            cmbCapacity.SelectedItem = row.Cells[2].Value.ToString();
+
+            if (int.Parse(row.Cells[3].Value.ToString()) == 1)
+            {
+                radioLab.Select();
+            }
+            else
+            {
+                radioLec.Select();
+            }
+                cmbCapacity.SelectedItem = row.Cells[2].Value.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,7 +102,7 @@ namespace Manage_Building
 
         private void DeleteSelection(object sender, EventArgs e)
         {
-            int updateCount = roomController.DeleteRoom(int.Parse(textBox1.Text));
+            int updateCount = roomController.DeleteRoom(int.Parse(textBox2.Text));
 
             if (updateCount > 0)
             {
@@ -111,23 +120,27 @@ namespace Manage_Building
         {
             Room room = new Room()
             {
-                Id = int.Parse(textBox1.Text),
-                name = textBox2.Text,
-                Capacity = int.Parse(cmbCapacity.SelectedItem.ToString())
+                Id = int.Parse(textBox2.Text),
+                name = textBox1.Text,
+               Capacity = int.Parse(cmbCapacity.SelectedItem.ToString())
             };
-            if (radioButton1.Checked)
+            if (radioLab.Checked)
             {
-                room.type = 1;
+                room.roomType = 1;
             }
 
-            if (radioButton2.Checked)
+            if (radioLec.Checked)
             {
-                room.type = 2;
+                room.roomType = 2;
             }
             int updateCount = roomController.UpdateRoom(room);
 
             if (updateCount > 0)
+            {
+                loadToList();
+                clearFields();
                 MessageBox.Show("Room succesfully updated");
+            }
             else
                 MessageBox.Show("Room update failed");
         }
